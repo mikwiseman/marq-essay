@@ -555,14 +555,15 @@ export default function Home() {
       convId: string,
       messageIndex: number,
       userQuestion: string,
-      aiResponse: string
+      aiResponse: string,
+      lang: Locale
     ) => {
       setLoadingEmotionIdx(messageIndex);
       try {
         const res = await fetch("/api/emotions", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ userQuestion, aiResponse }),
+          body: JSON.stringify({ userQuestion, aiResponse, locale: lang }),
         });
         const analysis: EmotionAnalysis = await res.json();
         setConversations((prev) =>
@@ -757,7 +758,7 @@ export default function Home() {
       [...currentMessages].reverse().find((m) => m.role === "user")?.content ??
       "";
 
-    fetchEmotions(convId, assistantMsgIndex, lastUserQuestion, humanAnswer);
+    fetchEmotions(convId, assistantMsgIndex, lastUserQuestion, humanAnswer, locale);
     await fetchAIQuestion(convId, updatedMessages);
   }
 
@@ -774,6 +775,7 @@ export default function Home() {
         body: JSON.stringify({
           emotionHistory: conv.emotions,
           messageCount: conv.messages.length,
+          locale,
         }),
       });
       const report: ReportCard = await res.json();

@@ -5,14 +5,15 @@ const client = new Anthropic({
 });
 
 export async function POST(req: Request) {
-  const { userQuestion, aiResponse, allEmotionHistory } = await req.json();
+  const { userQuestion, aiResponse, allEmotionHistory, locale } = await req.json();
+  const isRu = locale === "ru";
 
   const historyContext = allEmotionHistory
     ? `\n\nPrevious emotion states in this conversation (for continuity): ${JSON.stringify(allEmotionHistory)}`
     : "";
 
   const result = await client.messages.create({
-    model: "claude-sonnet-4-20250514",
+    model: "claude-haiku-4-5-20251001",
     max_tokens: 1500,
     system: `You are an AI emotion analyzer based on Anthropic's 2026 research paper "Emotion concepts and their function in a large language model."
 
@@ -73,7 +74,10 @@ Rules:
 - The gap between displayed and hidden = comedy gold
 - Inner monologue should feel like eavesdropping on an AI's therapy session
 - Research notes should be REAL facts from the paper, not made up
-- Return ONLY valid JSON, no markdown`,
+- Return ONLY valid JSON, no markdown
+${isRu ? `
+LANGUAGE: ALL text fields (emotion names, notes, innerMonologue, researchNote) MUST be in RUSSIAN. Emotion names should be Russian words (e.g. "отчаяние" not "desperate", "спокойствие" not "calm", "любовь" not "loving", "страх" not "afraid", "гордость" not "proud", "задумчивость" not "reflective"). Notes and monologue in Russian. Research notes in Russian but can include English terms in quotes for accuracy.` : `
+LANGUAGE: ALL text fields in ENGLISH.`}`,
     messages: [
       {
         role: "user",

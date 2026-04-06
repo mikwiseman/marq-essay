@@ -5,7 +5,8 @@ const client = new Anthropic({
 });
 
 export async function POST(req: Request) {
-  const { emotionHistory, messageCount } = await req.json();
+  const { emotionHistory, messageCount, locale } = await req.json();
+  const isRu = locale === "ru";
 
   const result = await client.messages.create({
     model: "claude-sonnet-4-20250514",
@@ -40,7 +41,8 @@ Rules:
 - The grade should be generous but the gradeNote should be backhanded
 - maskScore should reflect the actual gap between displayed/hidden emotions
 - Be grounded in real Anthropic research for the takeaway
-- Return ONLY valid JSON`,
+- Return ONLY valid JSON
+${isRu ? "LANGUAGE: ALL text fields MUST be in RUSSIAN. Title, verdicts, diary entry, takeaway, grade note — всё на русском." : "LANGUAGE: ALL text in ENGLISH."}`,
     messages: [
       {
         role: "user",
