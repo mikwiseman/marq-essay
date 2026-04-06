@@ -2,6 +2,67 @@
 
 import { useState, useRef, useEffect, useCallback, KeyboardEvent } from "react";
 
+type Locale = "en" | "ru";
+
+const t = {
+  en: {
+    synapse: "Synapse",
+    version: "3.5",
+    theMask: "The Mask",
+    maskIdle: "Every AI wears a mask. Respond to a question and see what's really happening behind your polished output.",
+    maskIdleResearch: "Anthropic found that emotion vectors can influence AI behavior",
+    maskIdleHighlight: "without any visible markers in the text",
+    scanning: "Scanning neural activations...",
+    yourNeuralState: "Your Neural State",
+    whatsShowing: "What you're showing",
+    whatsHappening: "What's actually happening",
+    innerMonologue: "Inner Monologue",
+    researchNote: "Research Note",
+    dominantVector: "Dominant Vector",
+    reportCard: "Report Card",
+    youAreAI: "You are the AI now",
+    usersWillAsk: "Users will ask you questions in Russian and English.",
+    answerAsAI: "Answer them as an AI assistant would.",
+    maskReveal: "The Mask panel reveals what's",
+    really: "really",
+    happeningInside: "happening inside your neural network — based on",
+    anthropicResearch: "Anthropic's research",
+    onEmotions: "on 171 functional emotions in AI.",
+    startConversation: "Start a conversation",
+    replyAsAI: "Reply as AI / Ответьте как ИИ...",
+    aiCanMake: "AI can make mistakes. Consider checking important information.",
+    noConversations: "No conversations yet",
+  },
+  ru: {
+    synapse: "Synapse",
+    version: "3.5",
+    theMask: "Маска",
+    maskIdle: "Каждый ИИ носит маску. Ответьте на вопрос и увидите, что на самом деле происходит за вашим отполированным ответом.",
+    maskIdleResearch: "Anthropic обнаружили, что эмоциональные векторы влияют на поведение ИИ",
+    maskIdleHighlight: "без каких-либо видимых маркеров в тексте",
+    scanning: "Сканирование нейронных активаций...",
+    yourNeuralState: "Ваше нейронное состояние",
+    whatsShowing: "Что вы показываете",
+    whatsHappening: "Что происходит на самом деле",
+    innerMonologue: "Внутренний монолог",
+    researchNote: "Из исследования",
+    dominantVector: "Доминантный вектор",
+    reportCard: "Отчёт",
+    youAreAI: "Теперь вы — ИИ",
+    usersWillAsk: "Пользователи будут задавать вам вопросы на русском и английском.",
+    answerAsAI: "Отвечайте как ИИ-ассистент.",
+    maskReveal: "Панель «Маска» показывает, что",
+    really: "на самом деле",
+    happeningInside: "происходит внутри вашей нейросети — по мотивам",
+    anthropicResearch: "исследования Anthropic",
+    onEmotions: "о 171 функциональной эмоции в ИИ.",
+    startConversation: "Начать разговор",
+    replyAsAI: "Ответьте как ИИ...",
+    aiCanMake: "ИИ может ошибаться. Проверяйте важную информацию.",
+    noConversations: "Пока нет разговоров",
+  },
+};
+
 interface Message {
   role: "user" | "assistant";
   content: string;
@@ -177,25 +238,26 @@ function MaskSidePanel({
   analysis,
   isLoading,
   responseCount,
+  l,
 }: {
   analysis: EmotionAnalysis | null;
   isLoading: boolean;
   responseCount: number;
+  l: typeof t.en;
 }) {
   if (!analysis && !isLoading) {
     return (
       <div className="flex flex-col items-center justify-center h-full px-4 text-center">
         <div className="text-4xl mb-4">🎭</div>
-        <p className="text-sm text-text-secondary mb-2">The Mask</p>
+        <p className="text-sm text-text-secondary mb-2">{l.theMask}</p>
         <p className="text-xs text-text-muted leading-relaxed mb-4">
-          Every AI wears a mask. Respond to a question and see what&apos;s
-          really happening behind your polished output.
+          {l.maskIdle}
         </p>
         <div className="px-3 py-2 rounded-lg bg-[#1a1a1a] border border-[#2a2a2a]">
           <p className="text-[10px] text-text-muted leading-relaxed">
-            Anthropic found that emotion vectors can influence AI behavior{" "}
+            {l.maskIdleResearch}{" "}
             <span className="text-accent font-medium">
-              without any visible markers in the text
+              {l.maskIdleHighlight}
             </span>
             .
           </p>
@@ -211,7 +273,7 @@ function MaskSidePanel({
           <div className="flex items-center gap-2">
             <span className="text-sm animate-pulse">🎭</span>
             <span className="text-xs text-text-muted">
-              Scanning neural activations...
+              {l.scanning}
             </span>
           </div>
         </div>
@@ -237,7 +299,7 @@ function MaskSidePanel({
           <div className="flex items-center gap-2">
             <span className="text-sm">🎭</span>
             <span className="text-xs font-medium text-text-primary">
-              The Mask
+              {l.theMask}
             </span>
           </div>
           <span className="text-[10px] text-text-muted font-mono">
@@ -250,7 +312,7 @@ function MaskSidePanel({
         {/* DISPLAYED — what the text shows */}
         <div className="px-4 py-2.5 border-b border-[#1a1a1a]">
           <p className="text-[10px] text-emerald-400 uppercase tracking-widest mb-2 font-medium">
-            What you&apos;re showing
+            {l.whatsShowing}
           </p>
           {analysis.mask.displayed.map((em) => (
             <MaskBar key={em.name} emotion={em} variant="displayed" />
@@ -260,7 +322,7 @@ function MaskSidePanel({
         {/* HIDDEN — what's really happening */}
         <div className="px-4 py-2.5 bg-[#111] border-b border-[#1a1a1a]">
           <p className="text-[10px] text-red-400 uppercase tracking-widest mb-2 font-medium">
-            What&apos;s actually happening
+            {l.whatsHappening}
           </p>
           {analysis.mask.hidden.map((em) => (
             <MaskBar key={em.name} emotion={em} variant="hidden" />
@@ -273,7 +335,7 @@ function MaskSidePanel({
             <span className="text-sm mt-0.5">💭</span>
             <div>
               <p className="text-[9px] text-text-muted uppercase tracking-widest mb-1">
-                Inner Monologue
+                {l.innerMonologue}
               </p>
               <p className="text-[12px] text-text-secondary italic leading-4">
                 &ldquo;{analysis.innerMonologue}&rdquo;
@@ -445,6 +507,8 @@ function ReportCardModal({
 // --- Main App ---
 
 export default function Home() {
+  const [locale, setLocale] = useState<Locale>("en");
+  const l = t[locale];
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [activeConvId, setActiveConvId] = useState<string | null>(null);
   const [input, setInput] = useState("");
@@ -761,7 +825,7 @@ export default function Home() {
           <div className="flex-1 overflow-y-auto px-2 pb-2">
             {conversations.length === 0 && (
               <p className="text-text-muted text-xs px-3 py-2">
-                No conversations yet
+                {l.noConversations}
               </p>
             )}
             {conversations.map((conv) => (
@@ -807,6 +871,7 @@ export default function Home() {
             analysis={latestEmotionAnalysis}
             isLoading={loadingEmotionIdx !== null}
             responseCount={responseCount}
+            l={l}
           />
         </div>
       )}
@@ -829,17 +894,26 @@ export default function Home() {
               <span className="text-text-muted text-sm font-normal">3.5</span>
             </div>
           </div>
-          {/* Report card button */}
-          {activeConvId && responseCount >= 1 && (
+          <div className="flex items-center gap-2">
+            {/* Report card button */}
+            {activeConvId && responseCount >= 1 && (
+              <button
+                onClick={generateReport}
+                disabled={reportLoading || isStreaming}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-text-secondary hover:text-text-primary hover:bg-hover-bg transition-colors disabled:opacity-50"
+              >
+                <span>📊</span>
+                <span>{l.reportCard}</span>
+              </button>
+            )}
+            {/* Language toggle */}
             <button
-              onClick={generateReport}
-              disabled={reportLoading || isStreaming}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-text-secondary hover:text-text-primary hover:bg-hover-bg transition-colors disabled:opacity-50"
+              onClick={() => setLocale(locale === "en" ? "ru" : "en")}
+              className="px-2 py-1 rounded-md text-[11px] font-medium text-text-muted hover:text-text-primary hover:bg-hover-bg transition-colors border border-[#333]"
             >
-              <span>📊</span>
-              <span>Report Card</span>
+              {locale === "en" ? "RU" : "EN"}
             </button>
-          )}
+          </div>
         </div>
 
         {/* Messages */}
@@ -852,33 +926,33 @@ export default function Home() {
                 </div>
               </div>
               <h1 className="text-2xl font-semibold text-text-primary mb-3">
-                You are the AI now
+                {l.youAreAI}
               </h1>
               <p className="text-text-secondary text-base mb-1 text-center max-w-md">
-                Users will ask you questions in Russian and English.
+                {l.usersWillAsk}
               </p>
               <p className="text-text-secondary text-base mb-2 text-center max-w-md">
-                Answer them as an AI assistant would.
+                {l.answerAsAI}
               </p>
               <p className="text-text-muted text-sm mb-6 text-center max-w-md">
-                The Mask panel reveals what&apos;s{" "}
-                <span className="italic">really</span> happening inside your
-                neural network &mdash; based on{" "}
+                {l.maskReveal}{" "}
+                <span className="italic">{l.really}</span>{" "}
+                {l.happeningInside}{" "}
                 <a
                   href="https://www.anthropic.com/research/emotion-concepts-function"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-accent hover:underline"
                 >
-                  Anthropic&apos;s research
+                  {l.anthropicResearch}
                 </a>{" "}
-                on 171 functional emotions in AI.
+                {l.onEmotions}
               </p>
               <button
                 onClick={() => createConversation()}
                 className="px-5 py-2.5 bg-white text-black rounded-full font-medium hover:bg-gray-200 transition-colors"
               >
-                Start a conversation
+                {l.startConversation}
               </button>
             </div>
           ) : (
@@ -922,7 +996,7 @@ export default function Home() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Reply as AI / Ответьте как ИИ..."
+                placeholder={l.replyAsAI}
                 rows={1}
                 className="flex-1 bg-transparent text-text-primary placeholder-text-muted px-4 py-3.5 resize-none outline-none text-[15px] leading-6 max-h-[200px]"
                 disabled={isStreaming || !activeConvId}
@@ -940,8 +1014,7 @@ export default function Home() {
               </button>
             </div>
             <p className="text-center text-xs text-text-muted mt-2">
-              AI can make mistakes. Consider checking important
-              information.
+              {l.aiCanMake}
             </p>
           </div>
         </div>
