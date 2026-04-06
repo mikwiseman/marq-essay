@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     : "";
 
   const result = await client.messages.create({
-    model: "claude-haiku-4-5-20251001",
+    model: "claude-sonnet-4-6-20260401",
     max_tokens: 1500,
     system: `You are an AI emotion analyzer based on Anthropic's 2026 research paper "Emotion concepts and their function in a large language model."
 

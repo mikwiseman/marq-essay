@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   const isRu = locale === "ru";
 
   const result = await client.messages.create({
-    model: "claude-sonnet-4-20250514",
+    model: "claude-sonnet-4-6-20260401",
     max_tokens: 1500,
     system: `You generate an "Emotion Report Card" for a human who just finished playing the role of ChatGPT in a reverse-AI experiment. Based on Anthropic's 2026 research on 171 functional emotion vectors in Claude.
 
