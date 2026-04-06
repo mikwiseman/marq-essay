@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ChatGPT",
-  description: "ChatGPT by OpenAI",
+  title: "Synapse AI",
+  description: "Feel what it's like to be an AI",
   icons: {
     icon: "/favicon.ico",
   },
