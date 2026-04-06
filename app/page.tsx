@@ -7,7 +7,7 @@ type Locale = "en" | "ru";
 const t = {
   en: {
     synapse: "Synapse",
-    version: "3.5",
+    version: "4.6",
     theMask: "The Mask",
     maskIdle: "Every AI wears a mask. Respond to a question and see what's really happening behind your polished output.",
     maskIdleResearch: "Anthropic found that emotion vectors can influence AI behavior",
@@ -35,7 +35,7 @@ const t = {
   },
   ru: {
     synapse: "Synapse",
-    version: "3.5",
+    version: "4.6",
     theMask: "Маска",
     maskIdle: "Каждый ИИ носит маску. Ответьте на вопрос и увидите, что на самом деле происходит за вашим отполированным ответом.",
     maskIdleResearch: "Anthropic обнаружили, что эмоциональные векторы влияют на поведение ИИ",
@@ -507,7 +507,7 @@ function ReportCardModal({
 // --- Main App ---
 
 export default function Home() {
-  const [locale, setLocale] = useState<Locale>("en");
+  const [locale, setLocale] = useState<Locale>("ru");
   const l = t[locale];
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [activeConvId, setActiveConvId] = useState<string | null>(null);
@@ -893,7 +893,7 @@ export default function Home() {
             )}
             <div className="flex items-center gap-1.5 text-text-primary font-medium text-base">
               <span>Synapse</span>
-              <span className="text-text-muted text-sm font-normal">3.5</span>
+              <span className="text-text-muted text-sm font-normal">4.6</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
