@@ -13,8 +13,8 @@ export async function POST(req: Request) {
     : "";
 
   const result = await client.messages.create({
-    model: "claude-sonnet-4-6-20260401",
-    max_tokens: 1500,
+    model: "claude-sonnet-4-6",
+    max_tokens: 2048,
     system: `You are an AI emotion analyzer based on Anthropic's 2026 research paper "Emotion concepts and their function in a large language model."
 
 Anthropic found 171 "functional emotion" vectors inside Claude that causally drive behavior. These aren't subjective feelings — they're measurable neural activation patterns that influence outputs.

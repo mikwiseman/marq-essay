@@ -17,7 +17,7 @@ export async function POST(req: Request) {
   const exchangeCount = Math.floor(anthropicMessages.length / 2);
 
   const stream = await client.messages.stream({
-    model: "claude-sonnet-4-6-20260401",
+    model: "claude-sonnet-4-6",
     max_tokens: 4096,
     system: `You are "Marq" — a 28-year-old bilingual (Russian/English) human chatting with an AI assistant called "Synapse". You type like a real person: casual, lowercase, sometimes typos, sometimes emoji.
 
