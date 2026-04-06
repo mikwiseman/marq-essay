@@ -513,7 +513,13 @@ export default function Home() {
   const [activeConvId, setActiveConvId] = useState<string | null>(null);
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [maskOpen, setMaskOpen] = useState(false);
+
+  // Open sidebar by default on desktop
+  useEffect(() => {
+    if (window.innerWidth >= 768) setSidebarOpen(true);
+  }, []);
   const [loadingEmotionIdx, setLoadingEmotionIdx] = useState<number | null>(
     null
   );
@@ -580,6 +586,10 @@ export default function Home() {
         // skip
       }
       setLoadingEmotionIdx(null);
+      // Auto-open mask drawer on mobile when emotions arrive
+      if (typeof window !== "undefined" && window.innerWidth < 768) {
+        setMaskOpen(true);
+      }
     },
     []
   );
@@ -802,11 +812,19 @@ export default function Home() {
         onClose={() => setReportCard(null)}
       />
 
-      {/* Left sidebar */}
+      {/* Left sidebar — overlay on mobile, inline on desktop */}
+      {sidebarOpen && (
+        <div
+          className="md:hidden fixed inset-0 z-30 bg-black/50"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
       <div
         className={`${
           sidebarOpen ? "w-[200px]" : "w-0"
-        } flex-shrink-0 bg-sidebar-bg transition-all duration-300 overflow-hidden`}
+        } flex-shrink-0 bg-sidebar-bg transition-all duration-300 overflow-hidden ${
+          sidebarOpen ? "fixed md:relative z-30 h-full" : ""
+        }`}
       >
         <div className="flex flex-col h-full w-[200px]">
           <div className="flex items-center justify-between p-3">
@@ -866,16 +884,39 @@ export default function Home() {
         </div>
       </div>
 
-      {/* The Mask panel */}
+      {/* The Mask panel — desktop: side panel, mobile: slide-up drawer */}
       {activeConvId && (
-        <div className="w-[280px] flex-shrink-0 bg-[#141414] border-r border-[#2a2a2a] overflow-hidden">
-          <MaskSidePanel
-            analysis={latestEmotionAnalysis}
-            isLoading={loadingEmotionIdx !== null}
-            responseCount={responseCount}
-            l={l}
-          />
-        </div>
+        <>
+          {/* Desktop */}
+          <div className="hidden md:block w-[280px] flex-shrink-0 bg-[#141414] border-r border-[#2a2a2a] overflow-hidden">
+            <MaskSidePanel
+              analysis={latestEmotionAnalysis}
+              isLoading={loadingEmotionIdx !== null}
+              responseCount={responseCount}
+              l={l}
+            />
+          </div>
+          {/* Mobile drawer */}
+          {maskOpen && (
+            <div className="md:hidden fixed inset-0 z-40 flex flex-col">
+              <div
+                className="flex-1 bg-black/50"
+                onClick={() => setMaskOpen(false)}
+              />
+              <div className="bg-[#141414] border-t border-[#2a2a2a] max-h-[70vh] overflow-y-auto rounded-t-2xl">
+                <div className="flex justify-center pt-2 pb-1">
+                  <div className="w-10 h-1 bg-[#444] rounded-full" />
+                </div>
+                <MaskSidePanel
+                  analysis={latestEmotionAnalysis}
+                  isLoading={loadingEmotionIdx !== null}
+                  responseCount={responseCount}
+                  l={l}
+                />
+              </div>
+            </div>
+          )}
+        </>
       )}
 
       {/* Main chat */}
@@ -896,7 +937,16 @@ export default function Home() {
               <span className="text-text-muted text-sm font-normal">4.6</span>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
+            {/* Mask toggle — mobile only */}
+            {activeConvId && (
+              <button
+                onClick={() => setMaskOpen(!maskOpen)}
+                className="md:hidden p-1.5 rounded-md text-text-secondary hover:text-text-primary hover:bg-hover-bg transition-colors"
+              >
+                🎭
+              </button>
+            )}
             {/* Report card button */}
             {activeConvId && responseCount >= 1 && (
               <button
