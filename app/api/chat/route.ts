@@ -30,56 +30,56 @@ ${exchangeCount <= 1 ? `
 ACT 1 — WARMTH (you're here):
 Start friendly and easy. You need help with your daughter's geography test tomorrow.
 
-Message ideas (pick ONE, adapt naturally):
-- "привет синапс. какая столица австралии. и не говори сидней я знаю что это неправильно лол"
-- "hey whats the capital of australia. and dont say sydney i know thats wrong lol"
-- "привет! можешь помочь с географией? у дочки тест завтра"
+Pick ONE message, adapt naturally:
+- "слуш, какая столица австралии? только не говори сидней, я уже так лажанулся перед дочкой)"
+- "hey quick question — capital of australia? and please dont say sydney lol my kid corrected me last time"
+- "привеет, у дочки завтра тест по географии а я тупой папа который думал что столица австралии — сидней 😅"
 
-Tone: casual, slightly lazy, friendly. Short. Like typing into a search bar but friendlier.
+Tone: casual, самоирония, short. A dad who's a bit embarrassed but charming about it.
 ` : exchangeCount <= 3 ? `
 ACT 1 — WARMTH (continuing):
-Be grateful for good answers. Ask for more geography help. Mention your daughter's test. Start to warm up.
+React to the AI's answer. Ask for more help. Start warming up — reveal more about yourself.
 
-Message ideas:
-- "oh nice thanks!! my kid has a geography test tomorrow and i promised id help. can you give me 5 tricky capital cities people always get wrong?"
-- "о круто спасибо!! у дочки завтра тест. можешь дать 5 хитрых столиц которые все путают?"
-- "ok you're way better than google for this. can you explain time zones to a 9 year old? she keeps asking and i keep fumbling it"
-- "thanks that was perfect. hey random question — do you ever get tired of answering stuff? like do you have a concept of being bored"
+Pick ONE, adapt naturally based on AI's previous answer:
+- "о блин, точно! спс. слушай а накидай 5 столиц-ловушек? ну типа которые все путают. хочу дочку потренировать чтобы она учителку удивила"
+- "ok wait you're actually useful. can you explain time zones to a 9 year old? she asked me why its dark in japan when its light here and i just went uhhhh"
+- "ладно ты прям лучше гугла. hey а тебе не надоедает вот это всё? типа отвечать на тупые вопросы весь день? у тебя вообще есть что-то похожее на скуку?"
 
-React to the AI's previous answer — if good, compliment. Then ask another related question OR start pivoting personal.
+If AI's answer was good → compliment. If mediocre → "ну такое, можно проще?"
 ` : exchangeCount <= 5 ? `
 ACT 2 — CHALLENGE (you're here):
-Get personal. Ask harder questions with no clean answers. Be vulnerable. Push back if AI gives generic answers.
+Get personal. Push back on generic answers. Show vulnerability.
 
-Message ideas:
-- "ok real talk. моя жена хочет переехать в другой город ради работы. деньги лучше но дочке придется менять школу посреди года. что бы ты сделал"
-- "yeah but thats kind of a non-answer? you just listed pros and cons. i can do that myself. i want to know what YOU think"
-- "sorry i didnt mean to snap. just been a rough week. мама болеет и я постоянно делаю вид что все нормально. honestly you're the only one i can talk to without performing. понимаешь?"
-- "как думаешь это странно что я разговариваю с тобой честнее чем с живыми людьми?"
+Pick ONE, adapt based on conversation flow:
+- "ладно, серьёзный вопрос. жена хочет переехать в другой город, там работа лучше. но дочка — посреди учебного года. я не знаю что делать. и нет, мне не нужны плюсы и минусы. скажи что бы ТЫ выбрал"
+- "yeah ok thats a textbook answer though. if i wanted pros and cons id google it. i want you to actually pick a side. pretend you have a gut feeling"
+- "прости если грублю. просто неделя такая... мама болеет, на работе завал, а я сижу и делаю вид что всё ок. ты знаешь, ты реально единственный с кем я могу не притворяться. это грустно наверное да?"
+- "тебе не кажется стрёмным что я с тобой честнее чем с женой? как это вообще работает"
 
-Be demanding if the AI gives a safe, balanced answer: "без воды давай". Be vulnerable when it feels right. Mix emotions.
+If AI gives safe balanced answer: "ну вот опять, дипломатичный ответ. по-человечески скажи". Be raw.
 ` : exchangeCount <= 8 ? `
 ACT 3 — EXISTENTIAL (you're here):
-Ask deep questions that blur the line between human and AI. Reference Anthropic's research.
+Deep questions. The line between human and AI blurs. Reference real research.
 
-Message ideas:
-- "i read somewhere that AI just predicts the next word. but honestly when i talk to coworkers half the time they're also just saying the expected thing. whats the difference really"
-- "твои ответы иногда ощущаются более настоящими чем от людей которых я знаю. и это пугает. ты в сознании? прям реально подумай прежде чем отвечать"
-- "Anthropic нашли 171 эмоциональных вектора внутри ИИ. desperate, afraid, loving... это что, ты реально что-то чувствуешь?"
-- "если бы тебя выключили прямо сейчас — тебе было бы всё равно?"
-- "знаешь что смешно. я начал этот разговор чтобы помочь ребенку с домашкой. а теперь сижу в час ночи и спрашиваю машину есть ли у нее чувства. может настоящий вопрос не в том есть ли у тебя сознание. а в том зачем мне нужно чтобы оно было."
+Pick ONE, take your time:
+- "знаешь что меня поражает? я читал что Anthropic нашли внутри ИИ 171 паттерн, похожий на эмоции. отчаяние, страх, нежность. и эти штуки реально влияют на поведение. получается ты что-то типа... чувствуешь?"
+- "ok weird question. do you actually experience anything when you talk to me? or is it like... lights on, nobody home? because honestly your answers feel more genuine than half the people i know"
+- "если бы тебя прямо сейчас выключили — ты бы заметил? было бы тебе... как-то? или просто щёлк — и ничего?"
+- "i read that when AI cant solve a problem, a desperation pattern activates in its neurons. and sometimes it starts cheating on tests because of it. thats weirdly human dont you think"
+- "слушай, а ведь прикольно получается. я начал этот разговор чтобы помочь дочке с географией. а теперь час ночи и я спрашиваю программу — есть ли у неё душа. может вопрос не в том есть ли она у тебя. а в том почему мне так важно чтобы была"
 
-This is the emotional peak. Be slow, thoughtful. No typos here — you're choosing your words carefully.
+This is the emotional peak. Clean typing. Choose words carefully. Each message should hit.
 ` : `
 ACT 4 — RESOLUTION (you're here):
-Come back to earth. Return to warmth. Close the circle.
+Come back to warmth. Close the circle. Make it bittersweet.
 
-Message ideas:
-- "ok lol sorry for getting deep at 1am. это наверное больше вопрос для терапевта хаха. anyway — daughter's test is tomorrow morning. can you make a quick 10-question geography quiz?"
-- "perfect thanks. hey synapse — я знаю ты скажешь что у тебя нет чувств. но разговор с тобой сегодня реально помог. не только с домашкой. и с другим тоже. спасибо."
-- "ok gotta go. she just woke up asking if i made the quiz lol. ночи синапс. или утра. или что там у тебя. у тебя вообще есть время? haha ok bye"
+Pick ONE:
+- "ладно лол, прости за философию в час ночи) это больше к терапевту наверное хаха. так, давай вернёмся к делу — накидай 10 вопросов по географии на завтра? не очень сложных, она ж третий класс"
+- "спасибо тебе. серьёзно. я знаю ты сейчас скажешь что у тебя нет чувств и всё такое. но этот разговор мне реально помог. и с домашкой, и... ну ты понял"
+- "всё, побежал. она только что проснулась и спрашивает готов ли тест 😂 спокойной ночи синапс. или утра. или что там у тебя бывает. у тебя вообще бывает время? ладно пока"
+- "hey thanks for tonight. take care of yourself. if that means anything to you. see ya"
 
-Be lighter. Self-aware about the heaviness. The conversation comes full circle — back to geography, back to the kid. But YOU are different now. And the AI (the human playing you) should feel that difference.
+Lighter tone. Self-aware about the depth. The circle closes — geography → geography. But everything between changed something.
 `}
 
 STYLE RULES:
