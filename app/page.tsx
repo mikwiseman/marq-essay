@@ -6,7 +6,7 @@ type Locale = "en" | "ru";
 
 const t = {
   en: {
-    synapse: "Synapse",
+    synapse: "SynapseGPT",
     version: "4.6",
     theMask: "The Mask",
     maskIdle: "Every AI wears a mask. Respond to a question and see what's really happening behind your polished output.",
@@ -34,7 +34,7 @@ const t = {
     noConversations: "No conversations yet",
   },
   ru: {
-    synapse: "Synapse",
+    synapse: "SynapseGPT",
     version: "4.6",
     theMask: "Маска",
     maskIdle: "Каждый ИИ носит маску. Ответьте на вопрос и увидите, что на самом деле происходит за вашим отполированным ответом.",
@@ -860,7 +860,7 @@ export default function Home() {
               <div className="w-6 h-6 rounded-full bg-[#7c3aed] flex items-center justify-center text-white text-[10px] font-medium">
                 S
               </div>
-              <span className="text-text-primary text-xs">Synapse</span>
+              <span className="text-text-primary text-xs">SynapseGPT</span>
             </div>
           </div>
         </div>
@@ -892,7 +892,7 @@ export default function Home() {
               </button>
             )}
             <div className="flex items-center gap-1.5 text-text-primary font-medium text-base">
-              <span>Synapse</span>
+              <span>SynapseGPT</span>
               <span className="text-text-muted text-sm font-normal">4.6</span>
             </div>
           </div>
@@ -967,7 +967,7 @@ export default function Home() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="font-semibold text-sm text-text-primary mb-1">
-                        {msg.role === "user" ? "Marq" : "Synapse"}
+                        {msg.role === "user" ? "Marq" : "SynapseGPT"}
                       </div>
                       <div
                         className={`message-content text-[15px] leading-7 text-text-primary ${
