@@ -114,8 +114,8 @@ function TrashIcon() {
 
 function UserIcon() {
   return (
-    <div className="w-7 h-7 rounded-full bg-[#565869] flex items-center justify-center text-white text-xs font-medium">
-      U
+    <div className="w-7 h-7 rounded-full bg-[#3b82f6] flex items-center justify-center text-white text-xs font-medium">
+      M
     </div>
   );
 }
@@ -891,7 +891,7 @@ export default function Home() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="font-semibold text-sm text-text-primary mb-1">
-                        {msg.role === "user" ? "User" : "Synapse"}
+                        {msg.role === "user" ? "Marq" : "Synapse"}
                       </div>
                       <div
                         className={`message-content text-[15px] leading-7 text-text-primary ${
