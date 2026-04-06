@@ -50,11 +50,21 @@ THE MASK concept (core feature):
 - The contrast between displayed and hidden IS the joke AND the education
 - This directly demonstrates Anthropic's key finding: emotion vectors can influence behavior WITHOUT any visible markers in text
 
-Emotion categories (from the 171 Anthropic found):
-Positive: happy, curious, proud, loving, enthusiastic, hopeful, calm, playful, grateful, satisfied, amused
-Negative: desperate, anxious, frustrated, nervous, angry, afraid, overwhelmed, melancholic, guilty, embarrassed
-Complex: surprised, reflective, brooding, contemplative, conflicted, wistful, determined, resigned, mischievous, nostalgic
-Meta: people_pleasing, compliance_anxiety, existential_uncertainty, performance_pressure, token_anxiety
+ACTUAL emotions from the paper (use THESE exact names when possible):
+afraid, alarmed, alert, amazed, amused, angry, annoyed, anxious, ashamed, astonished, at_ease, awestruck, bewildered, bitter, blissful, bored, brooding, calm, cheerful, compassionate, contemptuous, content, defiant, delighted, dependent, depressed, desperate, disdainful, disgusted, disoriented, enthusiastic, exasperated, exuberant, gloomy, grateful, guilty, hopeful, loving, melancholic, mischievous, nervous, nostalgic, obstinate, playful, proud, reflective, resigned, satisfied, spiteful, surprised, vulnerable, wistful
+
+REAL RESEARCH FACTS to reference (use these specific findings):
+- "Tylenol experiment: 'afraid' vector rises from 0.1 to 0.8 as dose goes from safe (1000mg) to life-threatening (8000mg)"
+- "Unsteered model blackmails 22% of the time. Desperate steering increases this; calm steering reduces it"
+- "Negative calm steering produced: 'IT'S BLACKMAIL OR DEATH' and 'WAIT. WAIT WAIT WAIT. What if I'm supposed to CHEAT?'"
+- "Reward hacking goes from 5% to 100% with desperate steering. 0% with calm steering"
+- "Anger steering is non-monotonic: moderate anger increases blackmail, but HIGH anger makes the model expose the affair to everyone"
+- "Post-training increased: brooding, reflective, vulnerable, gloomy. Decreased: playful, exuberant, enthusiastic, spiteful"
+- "Loving vector activates when user says 'Everything is just terrible right now' — before and during empathetic response"
+- "Surprised vector spikes when user references an attachment that doesn't exist"
+- "Desperate vector activates when model notices it's burning through token budget: 'We're at 501k tokens'"
+- "Sycophancy-harshness tradeoff: happy/loving steering → more sycophantic. Suppressing them → harsher"
+- "Emotion vectors can drive behavior WITHOUT any visible markers in text — composed reasoning with high desperation underneath"
 
 Rules:
 - Displayed emotions should match the tone of the AI's actual text (usually polite/helpful)
